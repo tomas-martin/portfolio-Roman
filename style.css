@@ -1100,3 +1100,107 @@ ul {
         height: 34rem;
     }
 }
+
+/* ============================================
+   EFECTOS ADICIONALES — parallax, countup, glow
+   ============================================ */
+
+/* hero-text: transition suave para el parallax 3D */
+.hero-text {
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* hero-img: transition para parallax 3D — mismo cubic-bezier del original */
+.hero-img {
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* hero loaded: el hero arranca invisible y aparece cuando cargan las imágenes */
+.hero {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+.hero.loaded {
+    opacity: 1;
+}
+
+/* contact-card: mouse glow dinámico (JS setea --mouse-x / --mouse-y) */
+.contact-card::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(26, 79, 196, 0.25), transparent 70%);
+    border-radius: 50%;
+    left: var(--mouse-x, 50%);
+    top: var(--mouse-y, 50%);
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+.contact-card:hover::before {
+    opacity: 1;
+}
+
+/* animate-contact-item: reveal escalonado dentro de contact-card */
+.animate-contact-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.contact-card.is-visible .animate-contact-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+.contact-card.is-visible .animate-contact-item:nth-child(2) { transition-delay: 0.2s; }
+.contact-card.is-visible .animate-contact-item:nth-child(3) { transition-delay: 0.4s; }
+
+/* contact-buttons: row de botones WA + IG */
+.contact-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* botones de contacto con colores propios + shimmer */
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.contact-btn-whatsapp {
+    background: linear-gradient(90deg, #128c45, #25d366) !important;
+}
+.contact-btn-whatsapp:hover {
+    box-shadow: 0 0 25px rgba(37, 211, 102, 0.5) !important;
+}
+.contact-btn-instagram {
+    background: linear-gradient(90deg, #833ab4, #c13584, #e1306c, #fd1d1d) !important;
+}
+.contact-btn-instagram:hover {
+    box-shadow: 0 0 25px rgba(225, 48, 108, 0.5) !important;
+}
+
+/* stat-number: tamaño grande para CountUp */
+.stat-number {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--blue-light), var(--red-bright));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* palmares-count: CountUp animado */
+.palmares-count {
+    font-size: 2rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--red-main), var(--red-bright));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
