@@ -71,13 +71,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ── Scroll suave para nav links ───────────────
+    // Usamos el nav-inner (altura fija 72px) para no incluir el menú móvil abierto
+    const navInner = document.querySelector('.nav-inner');
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', e => {
-            const target = document.querySelector(anchor.getAttribute('href'));
+            const href = anchor.getAttribute('href');
+            const target = href && href !== '#' ? document.querySelector(href) : null;
             if (target) {
                 e.preventDefault();
-                const navH = navbar ? navbar.offsetHeight : 72;
-                const top = target.getBoundingClientRect().top + window.scrollY - navH;
+                const navH = navInner ? navInner.offsetHeight : 72;
+                const top = target.getBoundingClientRect().top + window.scrollY - navH - 16;
                 window.scrollTo({ top, behavior: 'smooth' });
             }
         });
