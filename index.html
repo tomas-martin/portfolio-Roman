@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Román Zuñiga - Portfolio Profesional</title>
+    <meta name="description" content="Portfolio profesional de Román Zuñiga, jugador de fútbol de salón (futsal). Posición: Pivot. Descubre su trayectoria, palmarés, videos y más.">
+    <meta name="keywords" content="Román Zuñiga, futsal, fútbol de salón, pivot, jugador de futsal, portfolio, Argentina">
+    <meta name="author" content="Román Zuñiga">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Román Zuñiga - Portfolio Profesional">
+    <meta property="og:description" content="Portfolio profesional de Román Zuñiga, jugador de futsal. Pivot. Argentina.">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Román Zuñiga - Portfolio Profesional">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-brand">
+                <img src="assets/Talleres_Futsal.png" alt="Logo Equipo" class="nav-logo" onerror="this.style.display='none'">
+                <span class="nav-name">Román Zuñiga</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#bio" class="nav-link">Ficha Técnica</a>
+                <a href="#video" class="nav-link">Video</a>
+                <a href="#honors" class="nav-link">Trayectoria</a>
+                <a href="#career" class="nav-link">Palmarés</a>
+                <a href="#images" class="nav-link">Galería</a>
+                <a href="#contact" class="nav-link">Contacto</a>
+            </div>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#bio" class="mobile-link">Ficha Técnica</a>
+            <a href="#video" class="mobile-link">Video</a>
+            <a href="#honors" class="mobile-link">Trayectoria</a>
+            <a href="#career" class="mobile-link">Palmarés</a>
+            <a href="#images" class="mobile-link">Galería</a>
+            <a href="#contact" class="mobile-link">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="home">
+        <div class="hero-bg-glow"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="name-wrapper"><span class="hero-firstname animate-reveal">Román</span></div>
+                <div class="name-wrapper"><span class="hero-lastname animate-reveal delay-1">Zuñiga</span></div>
+                <div class="hero-position animate-reveal delay-2">Pivot · Futsal</div>
+            </div>
+            <div class="hero-images">
+                <img src="/assets/7-91957a3a.webp" alt="Román Zuñiga de frente" class="hero-img hero-img-1" onerror="this.style.display='none'">
+                <img src="/assets/8-b6670c66.webp" alt="Román Zuñiga de espalda" class="hero-img hero-img-2" onerror="this.style.display='none'">
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+
+        <!-- VIDEO -->
+        <section id="video" class="section section-video">
+            <div class="section-inner">
+                <h2 class="section-title fade-in">Mejores Jugadas</h2>
+                <div class="video-frame fade-in delay-1">
+                    <iframe
+                        src=""
+                        title="Román Zuñiga | Pivot - Mendoza | Argentina"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- FICHA TÉCNICA -->
+        <section id="bio" class="section section-bio">
+            <div class="section-inner">
+                <h2 class="section-title fade-in">Ficha Técnica</h2>
+                <div class="bio-grid">
+                    <div class="bio-card fade-in" style="--delay: 0s">
+                        <span class="bio-label">Posición</span>
+                        <span class="bio-value">Pivot</span>
+                    </div>
+                    <div class="bio-card fade-in" style="--delay: 0.1s">
+                        <span class="bio-label">Nacionalidad</span>
+                        <div class="bio-value-row">
+                            <img src="assets/banderaArgentina-87dabfa7.png" alt="Argentina" class="flag" onerror="this.style.display='none'">
+                            <span class="bio-value">Argentina</span>
+                        </div>
+                    </div>
+                    <div class="bio-card fade-in" style="--delay: 0.2s">
+                        <span class="bio-label">Pierna Hábil</span>
+                        <span class="bio-value">Derecha</span>
+                    </div>
+                    <div class="bio-card fade-in" style="--delay: 0.3s">
+                        <span class="bio-label">Fecha de Nacimiento</span>
+                        <span class="bio-value">01/07/1999</span>
+                    </div>
+                    <div class="bio-card fade-in" style="--delay: 0.4s">
+                        <span class="bio-label">Edad</span>
+                        <span class="bio-value"><span id="playerAge">26</span> años</span>
+                    </div>
+                    <div class="bio-card fade-in" style="--delay: 0.5s">
+                        <span class="bio-label">Altura</span>
+                        <span class="bio-value"></span>
+                    </div>
+                    <div class="bio-card fade-in" style="--delay: 0.6s">
+                        <span class="bio-label">Peso</span>
+                        <span class="bio-value"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRAYECTORIA -->
+        <section id="honors" class="section section-honors">
+            <div class="section-inner">
+                <h2 class="section-title fade-in">Estadísticas y Trayectoria</h2>
+
+                <div class="stats-grid fade-in">
+                    <div class="stat-card">
+                        <span class="stat-number">3+</span>
+                        <span class="stat-label">Clubes en su carrera</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">2015</span>
+                        <span class="stat-label">Año de Debut</span>
+                    </div>
+                </div>
+
+                <div class="career-grid fade-in delay-1">
+                    <div class="career-card">
+                        <h3 class="career-card-title">Clubes</h3>
+                        <ul class="career-list">
+                            <li>Fray Luis Beltran (Mendoza)</li>
+                            <li>Andes Talleres (Mendoza - Actual)</li>
+                            <li>Sportscenter Celano(Celano - Italia)</li>
+                        </ul>
+                    </div>
+                    <div class="career-card">
+                        <h3 class="career-card-title">Selecciones</h3>
+                        <ul class="career-list">
+                            <li>Selección de Mendoza C20</li>
+                            <li>Selección de Mendoza Primera</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PALMARÉS -->
+        <section id="career" class="section section-career">
+            <div class="section-inner">
+                <h2 class="section-title fade-in">Palmarés Deportivo</h2>
+
+                <div class="palmares-grid fade-in">
+                    <!-- Torneos Locales -->
+                    <div class="palmares-card">
+                        <div class="palmares-header">
+                            <h3 class="palmares-card-title">Torneos Locales</h3>
+                            <span class="palmares-count">6</span>
+                        </div>
+                        <div class="palmares-body">
+                            <div class="palmares-group">
+                                <h4 class="palmares-club">Flamengo</h4>
+                                <ul class="palmares-list">
+                                    <li>Apertura y Clausura 2018</li>
+                                    <li>Apertura y Clausura 2021</li>
+                                    <li>Apertura y Clausura 2022</li>
+                                    <li>Apertura 2023</li>
+                                </ul>
+                            </div>
+                            <div class="palmares-group">
+                                <h4 class="palmares-club">Roller Center (Caleta Olivia)</h4>
+                                <ul class="palmares-list">
+                                    <li>Clausura 2023</li>
+                                </ul>
+                            </div>
+                            <div class="palmares-group">
+                                <h4 class="palmares-club">Camioneros (Comodoro Rivadavia)</h4>
+                                <ul class="palmares-list">
+                                    <li>Torneo Anual 2024 - Campeón Cat. 'A' (Ascenso)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nacionales e Internacionales -->
+                    <div class="palmares-card">
+                        <div class="palmares-header">
+                            <h3 class="palmares-card-title">Nacionales e Internacionales</h3>
+                            <span class="palmares-count">4</span>
+                        </div>
+                        <div class="palmares-body">
+                            <div class="palmares-group">
+                                <h4 class="palmares-club">Flamengo (Nacionales)</h4>
+                                <ul class="palmares-list">
+                                    <li>Copa Nacional Franca Austral 2021 - Campeón</li>
+                                    <li>3er Puesto DH 2022</li>
+                                    <li>2do Puesto DH 2023</li>
+                                </ul>
+                            </div>
+                            <div class="palmares-group">
+                                <h4 class="palmares-club">Flamengo (Internacional)</h4>
+                                <ul class="palmares-list">
+                                    <li>Campeón 'III Continental Cup FIFUSA 2024'</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Selecciones -->
+                    <div class="palmares-card">
+                        <div class="palmares-header">
+                            <h3 class="palmares-card-title">Selecciones</h3>
+                            <span class="palmares-count">4</span>
+                        </div>
+                        <div class="palmares-body">
+                            <div class="palmares-group">
+                                <h4 class="palmares-club">Selección Mayor Puerto Deseado</h4>
+                                <ul class="palmares-list">
+                                    <li>Argentino de Selecciones B 2017 - 2do Puesto y Ascenso al Nacional A</li>
+                                    <li>Argentino de Selecciones B 2019 - 2do Puesto y Ascenso al Nacional A</li>
+                                </ul>
+                            </div>
+                            <div class="palmares-group">
+                                <h4 class="palmares-club">Selección Mayor Comodoro Rivadavia</h4>
+                                <ul class="palmares-list">
+                                    <li>Argentino de Selecciones A 2024 - Campeón</li>
+                                    <li>Argentino de Selecciones A 2025 - 2do Puesto</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALERÍA -->
+        <section id="images" class="section section-gallery">
+            <div class="section-inner">
+                <h2 class="section-title fade-in">Galería</h2>
+                <div class="gallery-carousel fade-in delay-1">
+                    <div class="carousel-track" id="carouselTrack">
+                        <div class="carousel-slide"><img src="/assets/img1-8134a027.jpeg" alt="Galería 1" onerror="this.closest('.carousel-slide').style.display='none'"></div>
+                        <div class="carousel-slide"><img src="/assets/1-84c65ae5.webp" alt="Galería 2" onerror="this.closest('.carousel-slide').style.display='none'"></div>
+                        <div class="carousel-slide"><img src="/assets/2-0cc65eef.webp" alt="Galería 3" onerror="this.closest('.carousel-slide').style.display='none'"></div>
+                        <div class="carousel-slide"><img src="/assets/3-742be93e.webp" alt="Galería 4" onerror="this.closest('.carousel-slide').style.display='none'"></div>
+                        <div class="carousel-slide"><img src="/assets/4-89124c4d.webp" alt="Galería 5" onerror="this.closest('.carousel-slide').style.display='none'"></div>
+                        <div class="carousel-slide"><img src="/assets/5-51ab6692.webp" alt="Galería 6" onerror="this.closest('.carousel-slide').style.display='none'"></div>
+                        <div class="carousel-slide"><img src="/assets/6-224e2f17.webp" alt="Galería 7" onerror="this.closest('.carousel-slide').style.display='none'"></div>
+                        <div class="carousel-slide"><img src="/assets/7-26b7a05f.webp" alt="Galería 8" onerror="this.closest('.carousel-slide').style.display='none'"></div>
+                        <div class="carousel-slide"><img src="/assets/8-6b993ede.webp" alt="Galería 9" onerror="this.closest('.carousel-slide').style.display='none'"></div>
+                        <div class="carousel-slide"><img src="/assets/9-0b7a6416.webp" alt="Galería 10" onerror="this.closest('.carousel-slide').style.display='none'"></div>
+                    </div>
+                    <button class="carousel-btn carousel-btn-prev" id="prevBtn" aria-label="Anterior">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                    </button>
+                    <button class="carousel-btn carousel-btn-next" id="nextBtn" aria-label="Siguiente">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                    </button>
+                    <div class="carousel-dots" id="carouselDots"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTO -->
+        <section id="contact" class="section section-contact">
+            <div class="section-inner">
+                <div class="contact-card fade-in">
+                    <h2 class="contact-title">Contacto</h2>
+                    <p class="contact-desc">Disponible para nuevos desafíos y oportunidades profesionales.</p>
+                    <a href="mailto:contacto@romanzuniga.com" class="contact-btn">Enviar Mail</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
