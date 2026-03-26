@@ -282,11 +282,13 @@ ul {
     padding: 3rem 1.5rem 8rem;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
 }
 
 .hero-text {
     position: relative;
-    z-index: 2;
+    z-index: 10;
 }
 
 .name-wrapper {
@@ -331,7 +333,7 @@ ul {
 /* Hero images */
 .hero-images {
     position: absolute;
-    bottom: 0;
+    bottom: 200px;
     left: 0;
     right: 0;
     display: flex;
@@ -351,18 +353,33 @@ ul {
 }
 
 .hero-img-1 {
-    left: 0;
-    width: 12rem;
-    z-index: 20;
+    /* PC: costado izquierdo, altura casi completa, sin tapar el nombre */
+    left: 2%;
+    width: clamp(14rem, 18vw, 22rem);
+    height: clamp(20rem, 70vh, 42rem);
+    z-index: 5;          /* detrás del texto (z-index: 2 en hero-text) → necesita estar por debajo */
     animation-delay: 0.4s;
+    object-position: top center;
 }
 
 .hero-img-2 {
-    right: 8%;
-    width: 15rem;
-    height: 15rem;
-    z-index: 10;
-    animation-delay: 0.6s;
+    right: 3%;
+    width: clamp(13rem, 17vw, 20rem);
+    height: clamp(18rem, 60vh, 38rem);
+    z-index: 5;
+    animation-delay: 0.4s;
+}
+
+/* Imagen central — grande, pegada arriba, z-index detrás del texto */
+.hero-img-center {
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(18rem, 24vw, 30rem);
+    height: clamp(28rem, 82vh, 54rem);
+    z-index: 3;
+    animation-delay: 0.5s;
+    object-position: top center;
+    bottom: 0;
 }
 
 /* Scroll indicator */
@@ -1073,15 +1090,20 @@ ul {
     .mobile-menu { display: none; }
 
     .hero-img-1 {
+        left: 1%;
+        width: 18rem;
+        height: 26rem;
+    }
+
+    .hero-img-center {
         width: 20rem;
-        height: 25rem;
-        left: 0;
+        height: 30rem;
     }
 
     .hero-img-2 {
-        width: 20rem;
-        height: 28rem;
-        right: 0;
+        right: 1%;
+        width: 18rem;
+        height: 26rem;
     }
 
     .hero-lastname {
@@ -1111,14 +1133,19 @@ ul {
 
 @media (min-width: 1024px) {
     .hero-img-1 {
-        left: 5rem;
-        width: 20rem;
-        height: 25rem;
+        left: 3%;
+        width: 22rem;
+        height: 32rem;
+    }
+
+    .hero-img-center {
+        width: 26rem;
+        height: 38rem;
     }
 
     .hero-img-2 {
-        right: 10rem;
-        width: 26rem;
+        right: 4%;
+        width: 20rem;
         height: 30rem;
     }
 
@@ -1133,13 +1160,20 @@ ul {
 
 @media (min-width: 1280px) {
     .hero-img-1 {
-        width: 22rem;
-        height: 30rem;
+        left: 4%;
+        width: 26rem;
+        height: 38rem;
+    }
+
+    .hero-img-center {
+        width: 30rem;
+        height: 46rem;
     }
 
     .hero-img-2 {
-        width: 28rem;
-        height: 34rem;
+        right: 5%;
+        width: 24rem;
+        height: 35rem;
     }
 }
 
@@ -1245,4 +1279,61 @@ ul {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+/* HERO IMAGE MOBILE */
+.hero-img-mobile-wrapper {
+    display: none;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.hero-img-mobile {
+    width: clamp(260px, 85vw, 400px);
+    height: clamp(360px, 72vh, 560px);
+    object-fit: contain;
+    object-position: top center;
+    filter: grayscale(1) drop-shadow(0 10px 30px rgba(0, 0, 0, 0.7));
+    opacity: 0;
+    animation: scaleIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
+    margin: 0 auto;
+}
+
+/* ── Mobile: wrapper visible, hero-img-1/2/center ocultas ── */
+@media (max-width: 767px) {
+    .hero-img-mobile-wrapper {
+        display: flex;
+    }
+    .hero-img-1,
+    .hero-img-2,s
+    .hero-img-center {
+        display: none;
+    }
+    .hero-content {
+        justify-content: flex-end;
+        padding-bottom: 5rem;
+        position: relative;
+        z-index: 5;
+    }
+}
+
+/* ── Desktop: wrapper oculto, hero-img-1/2/center visibles ── */
+@media (min-width: 768px) {
+    .hero-img-mobile-wrapper {
+        display: none;
+    }
+    .hero-img-1,
+    .hero-img-2 {
+        right: 5rem;
+        width: 26rem;
+        height: 30rem;
+    }
+    .hero-img-center {
+        display: block;
+    }
 }

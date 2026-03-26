@@ -175,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroText  = document.querySelector('.hero-text');
     const heroImg1  = document.querySelector('.hero-img-1');
     const heroImg2  = document.querySelector('.hero-img-2');
+    const heroImgC  = document.querySelector('.hero-img-center');
 
     if (heroContainer) {
         window.addEventListener('mousemove', e => {
@@ -188,6 +189,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (heroImg1)
                 heroImg1.style.transform =
                     `translate(${mx * 25}px, ${gy * 15}px) rotateY(${mx * 15}deg) rotateX(${-gy * 10}deg)`;
+            if (heroImgC)
+                heroImgC.style.transform =
+                    `translateX(-50%) translate(${mx * 15}px, ${gy * 10}px) rotateY(${mx * 8}deg) rotateX(${-gy * 6}deg)`;
             if (heroImg2)
                 heroImg2.style.transform =
                     `translate(${mx * 10}px, ${gy * 8}px) rotateY(${mx * 8}deg) rotateX(${-gy * 5}deg)`;
