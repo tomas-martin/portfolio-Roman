@@ -293,4 +293,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
     }
 
+    // ── Video: cargar iframe al hacer click en la miniatura ──
+    const videoThumb = document.getElementById('videoThumb');
+    if (videoThumb) {
+        videoThumb.addEventListener('click', () => {
+            const videoId = videoThumb.dataset.videoid;
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            iframe.title = 'Román Zuñiga | Pivot - Mendoza | Argentina';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.allowFullscreen = true;
+            iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;';
+            videoThumb.replaceWith(iframe);
+        });
+    }
+
 });

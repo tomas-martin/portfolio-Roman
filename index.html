@@ -84,13 +84,14 @@
             <div class="section-inner">
                 <h2 class="section-title fade-in">Mejores Jugadas 🎥</h2>
                 <div class="video-frame fade-in delay-1">
-                    <iframe
-                        src="https://www.youtube.com/embed/okRVnHOy71o?si=hZ6v0fl50z2cx-6J"
-                        title="Román Zuñiga | Pivot - Mendoza | Argentina"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen
-                        loading="lazy">
-                    </iframe>
+                    <div class="video-thumb-wrapper" id="videoThumb" data-videoid="okRVnHOy71o">
+                        <img src="assets/fondo_video.png" alt="Ver video de Román Zuñiga" class="video-thumb-img">
+                        <button class="video-play-btn" aria-label="Reproducir video">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -180,7 +181,7 @@
                     <!-- Torneos Locales -->
                     <div class="palmares-card">
                         <div class="palmares-header">
-                            <h3 class="palmares-card-title">Torneos Locales 🏆</h3>
+                            <h3 class="palmares-card-title">Torneos Locales</h3>
                             <span class="palmares-count">5</span>
                         </div>
                         <div class="palmares-body">
@@ -210,7 +211,7 @@
                     <!-- Nacionales e Internacionales -->
                     <div class="palmares-card">
                         <div class="palmares-header">
-                            <h3 class="palmares-card-title">Nacionales e Internacionales 🏆</h3>
+                            <h3 class="palmares-card-title">Nacionales e Internacionales</h3>
                             <span class="palmares-count">3</span>
                         </div>
                         <div class="palmares-body">
@@ -233,7 +234,7 @@
                     <!-- Selecciones -->
                     <div class="palmares-card">
                         <div class="palmares-header">
-                            <h3 class="palmares-card-title">Selecciones 🏆</h3>
+                            <h3 class="palmares-card-title">Selecciones</h3>
                             <span class="palmares-count">3</span>
                         </div>
                         <div class="palmares-body">
