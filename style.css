@@ -333,7 +333,7 @@ ul {
 /* Hero images */
 .hero-images {
     position: absolute;
-    bottom: 200px;
+    bottom: 150px;
     left: 0;
     right: 0;
     display: flex;
