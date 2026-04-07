@@ -289,6 +289,7 @@ ul {
 .hero-text {
     position: relative;
     z-index: 10;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .name-wrapper {
@@ -350,14 +351,14 @@ ul {
     opacity: 0;
     transform: scale(0.95);
     animation: scaleIn 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .hero-img-1 {
-    /* PC: costado izquierdo, altura casi completa, sin tapar el nombre */
     left: 2%;
     width: clamp(14rem, 18vw, 22rem);
     height: clamp(20rem, 70vh, 42rem);
-    z-index: 5;          /* detrás del texto (z-index: 2 en hero-text) → necesita estar por debajo */
+    z-index: 5;
     animation-delay: 0.4s;
     object-position: top center;
 }
@@ -370,7 +371,6 @@ ul {
     animation-delay: 0.4s;
 }
 
-/* Imagen central — grande, pegada arriba, z-index detrás del texto */
 .hero-img-center {
     left: 50%;
     transform: translateX(-50%);
@@ -451,7 +451,7 @@ ul {
 }
 
 /* ============================================
-   VIDEO
+   VIDEO — CORREGIDO
    ============================================ */
 .section-video {
     background: rgba(0, 0, 0, 0.3);
@@ -465,14 +465,27 @@ ul {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(5px);
     overflow: hidden;
+    /* Ratio fijo: thumbnail e iframe siempre proporcionales */
+    aspect-ratio: 16 / 9;
+    position: relative;
 }
 
 .video-frame iframe {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    aspect-ratio: 16/9;
+    height: 100%;
     border-radius: 8px;
     border: none;
     display: block;
+}
+
+/* Mobile: sin padding para aprovechar todo el ancho */
+@media (max-width: 767px) {
+    .video-frame {
+        padding: 0;
+        border-radius: 8px;
+    }
 }
 
 /* ============================================
@@ -562,8 +575,7 @@ ul {
 .stat-number {
     font-family: var(--font-display);
     font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 700;
-    color: var(--white);
+    font-weight: 900;
     line-height: 1;
     background: linear-gradient(135deg, var(--blue-light), var(--red-bright));
     -webkit-background-clip: text;
@@ -677,8 +689,7 @@ ul {
 .palmares-count {
     font-family: var(--font-display);
     font-size: 2rem;
-    font-weight: 700;
-    color: transparent;
+    font-weight: 900;
     background: linear-gradient(135deg, var(--red-main), var(--red-bright));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -848,18 +859,6 @@ ul {
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.contact-card::before {
-    content: '';
-    position: absolute;
-    top: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, var(--blue-glow), transparent 70%);
-    pointer-events: none;
-}
-
 .contact-card:hover {
     border-color: rgba(59, 130, 246, 0.4);
     box-shadow: 0 8px 40px rgba(26, 79, 196, 0.2);
@@ -884,8 +883,9 @@ ul {
 }
 
 .contact-btn {
-    display: inline-block;
-    background: linear-gradient(90deg, var(--red-main), var(--red-bright));
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
     color: var(--white);
     font-weight: 800;
     font-size: 1rem;
@@ -900,7 +900,6 @@ ul {
 
 .contact-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(239, 68, 68, 0.5);
 }
 
 .contact-btn::after {
@@ -916,6 +915,28 @@ ul {
 
 .contact-btn:hover::after {
     left: 150%;
+}
+
+.contact-btn-whatsapp {
+    background: linear-gradient(90deg, #128c45, #25d366);
+}
+.contact-btn-whatsapp:hover {
+    box-shadow: 0 0 25px rgba(37, 211, 102, 0.5);
+}
+
+.contact-btn-instagram {
+    background: linear-gradient(90deg, #833ab4, #c13584, #e1306c, #fd1d1d);
+}
+.contact-btn-instagram:hover {
+    box-shadow: 0 0 25px rgba(225, 48, 108, 0.5);
+}
+
+/* contact-buttons: row de botones WA + IG */
+.contact-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
 }
 
 /* ============================================
@@ -1122,10 +1143,6 @@ ul {
         height: 600px;
     }
 
-    .video-frame iframe {
-        aspect-ratio: 21/9;
-    }
-
     .contact-card {
         padding: 4rem 3rem;
     }
@@ -1178,20 +1195,8 @@ ul {
 }
 
 /* ============================================
-   EFECTOS ADICIONALES — parallax, countup, glow
+   HERO — loaded fade-in
    ============================================ */
-
-/* hero-text: transition suave para el parallax 3D */
-.hero-text {
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* hero-img: transition para parallax 3D — mismo cubic-bezier del original */
-.hero-img {
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* hero loaded: el hero arranca invisible y aparece cuando cargan las imágenes */
 .hero {
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
@@ -1200,7 +1205,9 @@ ul {
     opacity: 1;
 }
 
-/* contact-card: mouse glow dinámico (JS setea --mouse-x / --mouse-y) */
+/* ============================================
+   CONTACT CARD — mouse glow dinámico
+   ============================================ */
 .contact-card::before {
     content: '';
     position: absolute;
@@ -1233,54 +1240,9 @@ ul {
 .contact-card.is-visible .animate-contact-item:nth-child(2) { transition-delay: 0.2s; }
 .contact-card.is-visible .animate-contact-item:nth-child(3) { transition-delay: 0.4s; }
 
-/* contact-buttons: row de botones WA + IG */
-.contact-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-}
-
-/* botones de contacto con colores propios + shimmer */
-.contact-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-}
-.contact-btn-whatsapp {
-    background: linear-gradient(90deg, #128c45, #25d366) !important;
-}
-.contact-btn-whatsapp:hover {
-    box-shadow: 0 0 25px rgba(37, 211, 102, 0.5) !important;
-}
-.contact-btn-instagram {
-    background: linear-gradient(90deg, #833ab4, #c13584, #e1306c, #fd1d1d) !important;
-}
-.contact-btn-instagram:hover {
-    box-shadow: 0 0 25px rgba(225, 48, 108, 0.5) !important;
-}
-
-/* stat-number: tamaño grande para CountUp */
-.stat-number {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 900;
-    line-height: 1;
-    background: linear-gradient(135deg, var(--blue-light), var(--red-bright));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* palmares-count: CountUp animado */
-.palmares-count {
-    font-size: 2rem;
-    font-weight: 900;
-    background: linear-gradient(135deg, var(--red-main), var(--red-bright));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-/* HERO IMAGE MOBILE */
+/* ============================================
+   HERO IMAGE MOBILE
+   ============================================ */
 .hero-img-mobile-wrapper {
     display: none;
     justify-content: center;
@@ -1304,13 +1266,12 @@ ul {
     margin: 0 auto;
 }
 
-/* ── Mobile: wrapper visible, hero-img-1/2/center ocultas ── */
 @media (max-width: 767px) {
     .hero-img-mobile-wrapper {
         display: flex;
     }
     .hero-img-1,
-    .hero-img-2,s
+    .hero-img-2,
     .hero-img-center {
         display: none;
     }
@@ -1322,7 +1283,6 @@ ul {
     }
 }
 
-/* ── Desktop: wrapper oculto, hero-img-1/2/center visibles ── */
 @media (min-width: 768px) {
     .hero-img-mobile-wrapper {
         display: none;
@@ -1337,7 +1297,10 @@ ul {
         display: block;
     }
 }
-/* ── Video thumbnail personalizada ── */
+
+/* ============================================
+   VIDEO THUMBNAIL
+   ============================================ */
 .video-thumb-wrapper {
     position: relative;
     width: 100%;
@@ -1387,5 +1350,5 @@ ul {
 }
 
 .video-play-btn svg {
-    margin-left: 4px; /* centra visualmente el triángulo */
+    margin-left: 4px;
 }
