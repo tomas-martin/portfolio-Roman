@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,8 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 2.5rem;
-            max-width: 900px; margin: 0 auto;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         /* Card principal de contacto */
@@ -20,83 +22,153 @@
             border: 1px solid var(--borde);
             border-radius: 8px;
             padding: 2.5rem 2rem;
-            position: relative; overflow: hidden;
+            position: relative;
+            overflow: hidden;
             transition: border-color 0.3s;
         }
+
         .contact-main::before {
             content: '';
-            position: absolute; inset: 0;
-            background: radial-gradient(circle at var(--mx,50%) var(--my,50%),
-                rgba(37,99,235,0.12), transparent 65%);
-            pointer-events: none; opacity: 0;
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%),
+                    rgba(37, 99, 235, 0.12), transparent 65%);
+            pointer-events: none;
+            opacity: 0;
             transition: opacity 0.4s;
         }
-        .contact-main:hover { border-color: rgba(37,99,235,0.3); }
-        .contact-main:hover::before { opacity: 1; }
+
+        .contact-main:hover {
+            border-color: rgba(37, 99, 235, 0.3);
+        }
+
+        .contact-main:hover::before {
+            opacity: 1;
+        }
 
         .contact-headline {
             font-family: 'Bebas Neue', sans-serif;
             font-size: clamp(2.5rem, 8vw, 5rem);
-            line-height: 0.92; text-transform: uppercase;
+            line-height: 0.92;
+            text-transform: uppercase;
             letter-spacing: 0.03em;
             margin-bottom: 0.75rem;
         }
+
         .contact-headline em {
-            font-style: normal; color: transparent;
-            -webkit-text-stroke: 1.5px rgba(96,165,250,0.5);
+            font-style: normal;
+            color: transparent;
+            -webkit-text-stroke: 1.5px rgba(96, 165, 250, 0.5);
         }
+
         .contact-sub {
-            font-size: 0.9rem; color: var(--gris-400);
-            font-weight: 300; line-height: 1.7;
-            max-width: 420px; margin-bottom: 2.5rem;
+            font-size: 0.9rem;
+            color: var(--gris-400);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 420px;
+            margin-bottom: 2.5rem;
         }
 
         /* Botones de contacto */
         .contact-btns {
-            display: flex; flex-direction: column;
+            display: flex;
+            flex-direction: column;
             gap: 0.85rem;
         }
+
         .cta-btn {
-            display: flex; align-items: center; gap: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
             padding: 1.1rem 1.5rem;
-            border-radius: 6px; color: var(--blanco);
+            border-radius: 6px;
+            color: var(--blanco);
             font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 700; font-size: 1rem;
-            letter-spacing: 0.15em; text-transform: uppercase;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
             transition: transform 0.3s, box-shadow 0.3s;
-            position: relative; overflow: hidden;
-            border: none; cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
         }
+
         .cta-btn::after {
             content: '';
-            position: absolute; top: 0; left: -100%;
-            width: 60%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.7s;
         }
-        .cta-btn:hover::after { left: 160%; }
-        .cta-btn:hover { transform: translateY(-2px); }
+
+        .cta-btn:hover::after {
+            left: 160%;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+
         .cta-btn-icon {
-            width: 40px; height: 40px; border-radius: 50%;
-            background: rgba(255,255,255,0.15);
-            display: flex; align-items: center; justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             flex-shrink: 0;
         }
-        .cta-btn-info { flex: 1; display: flex; flex-direction: column; gap: 0.1rem; }
-        .cta-btn-label { font-size: 0.62rem; opacity: 0.7; letter-spacing: 0.3em; }
-        .cta-btn-main  { font-size: 1rem; }
-        .cta-btn-arrow { opacity: 0.6; font-size: 1.1rem; transition: transform 0.3s; }
-        .cta-btn:hover .cta-btn-arrow { transform: translateX(4px); opacity: 1; }
+
+        .cta-btn-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
+
+        .cta-btn-label {
+            font-size: 0.62rem;
+            opacity: 0.7;
+            letter-spacing: 0.3em;
+        }
+
+        .cta-btn-main {
+            font-size: 1rem;
+        }
+
+        .cta-btn-arrow {
+            opacity: 0.6;
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+        }
+
+        .cta-btn:hover .cta-btn-arrow {
+            transform: translateX(4px);
+            opacity: 1;
+        }
 
         .cta-wa {
             background: linear-gradient(135deg, #0a5c2e, #25d366);
         }
-        .cta-wa:hover { box-shadow: 0 8px 30px rgba(37,211,102,0.35); }
+
+        .cta-wa:hover {
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.35);
+        }
 
         .cta-ig {
             background: linear-gradient(135deg, #6911b2, #c13584, #e1306c, #f77737);
         }
-        .cta-ig:hover { box-shadow: 0 8px 30px rgba(225,48,108,0.35); }
+
+        .cta-ig:hover {
+            box-shadow: 0 8px 30px rgba(225, 48, 108, 0.35);
+        }
 
         /* Info rápida lateral */
         .contact-info-cards {
@@ -105,253 +177,317 @@
             gap: 1px;
             background: var(--borde);
             border: 1px solid var(--borde);
-            border-radius: 8px; overflow: hidden;
+            border-radius: 8px;
+            overflow: hidden;
         }
+
         .info-card {
             background: var(--fondo);
             padding: 1.5rem 1.25rem;
-            display: flex; flex-direction: column; gap: 0.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
             transition: background 0.3s;
         }
-        .info-card:hover { background: rgba(19,53,128,0.2); }
-        .info-card-icon { font-size: 1.6rem; }
+
+        .info-card:hover {
+            background: rgba(19, 53, 128, 0.2);
+        }
+
+        .info-card-icon {
+            font-size: 1.6rem;
+        }
+
         .info-card-label {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: 0.62rem; letter-spacing: 0.3em;
-            text-transform: uppercase; color: var(--gris-400);
+            font-size: 0.62rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gris-400);
         }
+
         .info-card-val {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: 1rem; font-weight: 700;
-            letter-spacing: 0.05em; color: var(--blanco);
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--blanco);
             line-height: 1.3;
         }
 
         /* Disponibilidad */
         .disponibilidad {
-            background: linear-gradient(135deg, rgba(19,53,128,0.35), rgba(6,12,30,0.7));
+            background: linear-gradient(135deg, rgba(19, 53, 128, 0.35), rgba(6, 12, 30, 0.7));
             border: 1px solid var(--borde);
-            border-radius: 8px; padding: 1.75rem 1.5rem;
-            display: flex; align-items: center; gap: 1.25rem;
+            border-radius: 8px;
+            padding: 1.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
         }
+
         .disp-dot {
-            width: 14px; height: 14px; border-radius: 50%;
-            background: #22c55e; flex-shrink: 0;
-            box-shadow: 0 0 0 4px rgba(34,197,94,0.2);
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #22c55e;
+            flex-shrink: 0;
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
             animation: pulse 2s ease infinite;
         }
+
         @keyframes pulse {
-            0%,100% { box-shadow: 0 0 0 4px rgba(34,197,94,0.2); }
-            50%      { box-shadow: 0 0 0 8px rgba(34,197,94,0.05); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(34, 197, 94, 0.05);
+            }
         }
+
         .disp-text {
             flex: 1;
         }
+
         .disp-title {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: 1rem; font-weight: 700;
-            letter-spacing: 0.08em; text-transform: uppercase;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
             color: var(--blanco);
         }
+
         .disp-sub {
-            font-size: 0.78rem; color: var(--gris-400);
-            font-weight: 300; margin-top: 0.15rem;
+            font-size: 0.78rem;
+            color: var(--gris-400);
+            font-weight: 300;
+            margin-top: 0.15rem;
         }
 
         @media (min-width: 768px) {
-            .contact-btns { flex-direction: row; flex-wrap: wrap; }
-            .cta-btn { flex: 1; min-width: 220px; }
+            .contact-btns {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .cta-btn {
+                flex: 1;
+                min-width: 220px;
+            }
         }
+
         @media (min-width: 1024px) {
-            .contacto-layout { grid-template-columns: 3fr 2fr; align-items: start; }
+            .contacto-layout {
+                grid-template-columns: 3fr 2fr;
+                align-items: start;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<nav id="navbar" class="navbar">
-    <div class="nav-inner">
-        <a href="index.html" class="nav-brand">
-            <img src="assets/Talleres_Futsal.png" alt="Logo" class="nav-logo" onerror="this.style.display='none'">
-            <div class="nav-brand-text">
-                <span class="nav-brand-name">Román Zuñiga</span>
-                <span class="nav-brand-tag">Pivot · Futsal</span>
-            </div>
-        </a>
-        <div class="nav-links" id="navLinks">
-            <a href="index.html"    class="nav-link">Inicio</a>
-            <a href="perfil.html"   class="nav-link">Perfil</a>
-            <a href="carrera.html"  class="nav-link">Carrera</a>
-            <a href="galeria.html"  class="nav-link">Momentos</a>
-            <a href="contacto.html" class="nav-link">Representación</a>
-        </div>
-        <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="index.html"    class="mobile-link">Inicio</a>
-        <a href="perfil.html"   class="mobile-link">Perfil</a>
-        <a href="carrera.html"  class="mobile-link">Carrera</a>
-        <a href="galeria.html"  class="mobile-link">Momentos</a>
-        <a href="contacto.html" class="mobile-link active">Representación</a>
-    </div>
-</nav>
-
-<div class="page-header" data-title="CONTACTO">
-    <div class="page-header-inner">
-        <p class="page-breadcrumb">
-            <a href="index.html">Inicio</a><span>/</span>Representación
-        </p>
-        <h1 class="page-title">Escribime <em>Ahora</em></h1>
-        <p class="page-subtitle">Disponible para propuestas de clubes, selecciones y oportunidades profesionales.</p>
-    </div>
-</div>
-
-<main>
-    <section class="section">
-        <div class="container">
-            <div class="contacto-layout">
-
-                <!-- Columna principal -->
-                <div>
-                    <div class="disponibilidad reveal" style="margin-bottom:1.5rem;">
-                        <div class="disp-dot"></div>
-                        <div class="disp-text">
-                            <p class="disp-title">Disponible para propuestas</p>
-                            <p class="disp-sub">Abierto a nuevos clubes, selecciones y desafíos internacionales.</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-main reveal d1" id="contactMain">
-                        <h2 class="contact-headline">Hablemos <em>Hoy</em></h2>
-                        <p class="contact-sub">
-                            Representación directa. Para consultas de clubes, selecciones, sponsors y prensa, 
-                            podés contactarme por los canales oficiales.
-                        </p>
-                        <div class="contact-btns">
-                            <a href="https://wa.me/542612725934" target="_blank" rel="noopener noreferrer" class="cta-btn cta-wa">
-                                <div class="cta-btn-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
-                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                                        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.531 5.856L.057 23.428a.75.75 0 00.921.921l5.573-1.474A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.686-.524-5.209-1.433l-.374-.222-3.868 1.023 1.023-3.869-.222-.374A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-                                    </svg>
-                                </div>
-                                <div class="cta-btn-info">
-                                    <span class="cta-btn-label">Mensaje directo</span>
-                                    <span class="cta-btn-main">WhatsApp</span>
-                                </div>
-                                <span class="cta-btn-arrow">→</span>
-                            </a>
-                            <a href="https://www.instagram.com/romann_zuniga33" target="_blank" rel="noopener noreferrer" class="cta-btn cta-ig">
-                                <div class="cta-btn-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
-                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                                    </svg>
-                                </div>
-                                <div class="cta-btn-info">
-                                    <span class="cta-btn-label">Seguir y contactar</span>
-                                    <span class="cta-btn-main">Instagram</span>
-                                </div>
-                                <span class="cta-btn-arrow">→</span>
-                            </a>
-                        </div>
-                    </div>
+    <nav id="navbar" class="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <img src="assets/Talleres_Futsal.png" alt="Logo" class="nav-logo" onerror="this.style.display='none'">
+                <div class="nav-brand-text">
+                    <span class="nav-brand-name">Román Zuñiga</span>
+                    <span class="nav-brand-tag">Pivot · Futsal</span>
                 </div>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="perfil.html" class="nav-link">Perfil</a>
+                <a href="carrera.html" class="nav-link">Carrera</a>
+                <a href="galeria.html" class="nav-link">Momentos</a>
+                <a href="contacto.html" class="nav-link">Representación</a>
+            </div>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" class="mobile-link">Inicio</a>
+            <a href="perfil.html" class="mobile-link">Perfil</a>
+            <a href="carrera.html" class="mobile-link">Carrera</a>
+            <a href="galeria.html" class="mobile-link">Momentos</a>
+            <a href="contacto.html" class="mobile-link active">Representación</a>
+        </div>
+    </nav>
 
-                <!-- Columna info -->
-                <div>
-                    <p class="section-label reveal">Detalles</p>
-                    <h3 class="section-title reveal d1" style="font-size: clamp(1.4rem,3.5vw,2.2rem);">Información</h3>
-                    <div class="contact-info-cards reveal d2">
-                        <div class="info-card">
-                            <span class="info-card-icon">📍</span>
-                            <span class="info-card-label">Ubicación</span>
-                            <span class="info-card-val">Mendoza<br>Argentina</span>
+    <div class="page-header" data-title="CONTACTO">
+        <div class="page-header-inner">
+            <p class="page-breadcrumb">
+                <a href="index.html">Inicio</a><span>/</span>Representación
+            </p>
+            <h1 class="page-title">Escribime <em>Ahora</em></h1>
+            <p class="page-subtitle">Disponible para propuestas de clubes y oportunidades profesionales.</p>
+        </div>
+    </div>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="contacto-layout">
+
+                    <!-- Columna principal -->
+                    <div>
+                        <div class="disponibilidad reveal" style="margin-bottom:1.5rem;">
+                            <div class="disp-dot"></div>
+                            <div class="disp-text">
+                                <p class="disp-title">Disponible para propuestas</p>
+                                <p class="disp-sub">Abierto a nuevos clubes, selecciones y desafíos internacionales.</p>
+                            </div>
                         </div>
-                        <div class="info-card">
-                            <span class="info-card-icon">⚽</span>
-                            <span class="info-card-label">Disciplina</span>
-                            <span class="info-card-val">Futsal<br>Pivot</span>
-                        </div>
-                        <div class="info-card">
-                            <span class="info-card-icon">🌍</span>
-                            <span class="info-card-label">Experiencia</span>
-                            <span class="info-card-val">Argentina<br>Italia</span>
-                        </div>
-                        <div class="info-card">
-                            <span class="info-card-icon">📅</span>
-                            <span class="info-card-label">Disponibilidad</span>
-                            <span class="info-card-val" style="color:#4ade80;">Inmediata</span>
+
+                        <div class="contact-main reveal d1" id="contactMain">
+                            <h2 class="contact-headline">Hablemos <em>Hoy</em></h2>
+                            <p class="contact-sub">
+                                Representación directa. Para consultas de clubes, selecciones, sponsors y prensa,
+                                podés contactarme por los canales oficiales.
+                            </p>
+                            <div class="contact-btns">
+                                <a href="https://wa.me/542612725934" target="_blank" rel="noopener noreferrer"
+                                    class="cta-btn cta-wa">
+                                    <div class="cta-btn-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                            width="22" height="22">
+                                            <path
+                                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                                            <path
+                                                d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.531 5.856L.057 23.428a.75.75 0 00.921.921l5.573-1.474A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.686-.524-5.209-1.433l-.374-.222-3.868 1.023 1.023-3.869-.222-.374A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+                                        </svg>
+                                    </div>
+                                    <div class="cta-btn-info">
+                                        <span class="cta-btn-label">Mensaje directo</span>
+                                        <span class="cta-btn-main">WhatsApp</span>
+                                    </div>
+                                    <span class="cta-btn-arrow">→</span>
+                                </a>
+                                <a href="https://www.instagram.com/romann_zuniga33" target="_blank"
+                                    rel="noopener noreferrer" class="cta-btn cta-ig">
+                                    <div class="cta-btn-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                            width="22" height="22">
+                                            <path
+                                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                        </svg>
+                                    </div>
+                                    <div class="cta-btn-info">
+                                        <span class="cta-btn-label">Seguir y contactar</span>
+                                        <span class="cta-btn-main">Instagram</span>
+                                    </div>
+                                    <span class="cta-btn-arrow">→</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Resumen rápido -->
-                    <div class="reveal d3" style="
+                    <!-- Columna info -->
+                    <div>
+                        <p class="section-label reveal">Detalles</p>
+                        <h3 class="section-title reveal d1" style="font-size: clamp(1.4rem,3.5vw,2.2rem);">Información
+                        </h3>
+                        <div class="contact-info-cards reveal d2">
+                            <div class="info-card">
+                                <span class="info-card-icon">📍</span>
+                                <span class="info-card-label">Ubicación</span>
+                                <span class="info-card-val">Mendoza<br>Argentina</span>
+                            </div>
+                            <div class="info-card">
+                                <span class="info-card-icon">⚽</span>
+                                <span class="info-card-label">Disciplina</span>
+                                <span class="info-card-val">Futsal<br>Pivot</span>
+                            </div>
+                            <div class="info-card">
+                                <span class="info-card-icon">🌍</span>
+                                <span class="info-card-label">Experiencia</span>
+                                <span class="info-card-val">Argentina<br>Italia</span>
+                            </div>
+                            <div class="info-card">
+                                <span class="info-card-icon">📅</span>
+                                <span class="info-card-label">Disponibilidad</span>
+                                <span class="info-card-val" style="color:#4ade80;">Inmediata</span>
+                            </div>
+                        </div>
+
+                        <!-- Resumen rápido -->
+                        <div class="reveal d3" style="
                         background: var(--card); border: 1px solid var(--borde);
                         border-radius: 8px; padding: 1.5rem; margin-top: 1.25rem;
                     ">
-                        <p style="
+                            <p style="
                             font-family:'Barlow Condensed',sans-serif;
                             font-size:0.65rem;letter-spacing:0.3em;
                             text-transform:uppercase;color:var(--rojo);
                             margin-bottom:0.75rem;
                         ">Por qué Román</p>
-                        <ul style="display:flex;flex-direction:column;gap:0.55rem;">
-                            <li style="display:flex;gap:0.6rem;font-size:0.82rem;color:var(--gris-100);font-weight:300;">
-                                <span style="color:var(--azul-claro);flex-shrink:0;">→</span>
-                                11 títulos en carrera activa
-                            </li>
-                            <li style="display:flex;gap:0.6rem;font-size:0.82rem;color:var(--gris-100);font-weight:300;">
-                                <span style="color:var(--azul-claro);flex-shrink:0;">→</span>
-                                Experiencia en Italia (Serie C1)
-                            </li>
-                            <li style="display:flex;gap:0.6rem;font-size:0.82rem;color:var(--gris-100);font-weight:300;">
-                                <span style="color:var(--azul-claro);flex-shrink:0;">→</span>
-                                2do Puesto Mundial de Clubes 2024
-                            </li>
-                            <li style="display:flex;gap:0.6rem;font-size:0.82rem;color:var(--gris-100);font-weight:300;">
-                                <span style="color:var(--azul-claro);flex-shrink:0;">→</span>
-                                Campeón Argentino de Selecciones 2025
-                            </li>
-                            <li style="display:flex;gap:0.6rem;font-size:0.82rem;color:var(--gris-100);font-weight:300;">
-                                <span style="color:var(--azul-claro);flex-shrink:0;">→</span>
-                                1.94 m — posición natural: Pivot
-                            </li>
-                        </ul>
+                            <ul style="display:flex;flex-direction:column;gap:0.55rem;">
+                                <li
+                                    style="display:flex;gap:0.6rem;font-size:0.82rem;color:var(--gris-100);font-weight:300;">
+                                    <span style="color:var(--azul-claro);flex-shrink:0;">→</span>
+                                    11 títulos en carrera activa
+                                </li>
+                                <li
+                                    style="display:flex;gap:0.6rem;font-size:0.82rem;color:var(--gris-100);font-weight:300;">
+                                    <span style="color:var(--azul-claro);flex-shrink:0;">→</span>
+                                    Experiencia en Italia (Serie C1)
+                                </li>
+                                <li
+                                    style="display:flex;gap:0.6rem;font-size:0.82rem;color:var(--gris-100);font-weight:300;">
+                                    <span style="color:var(--azul-claro);flex-shrink:0;">→</span>
+                                    2do Puesto Mundial de Clubes 2024
+                                </li>
+                                <li
+                                    style="display:flex;gap:0.6rem;font-size:0.82rem;color:var(--gris-100);font-weight:300;">
+                                    <span style="color:var(--azul-claro);flex-shrink:0;">→</span>
+                                    Campeón Argentino de Selecciones 2025
+                                </li>
+                                <li
+                                    style="display:flex;gap:0.6rem;font-size:0.82rem;color:var(--gris-100);font-weight:300;">
+                                    <span style="color:var(--azul-claro);flex-shrink:0;">→</span>
+                                    1.94 m — posición natural: Pivot
+                                </li>
+                            </ul>
+                        </div>
                     </div>
+
                 </div>
-
             </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">Román <span>Zuñiga</span></div>
+            <nav class="footer-nav">
+                <a href="index.html">Inicio</a>
+                <a href="perfil.html">Perfil</a>
+                <a href="carrera.html">Carrera</a>
+                <a href="galeria.html">Momentos</a>
+                <a href="contacto.html">Representación</a>
+            </nav>
+            <p class="footer-copy">Pivot · Futsal · Mendoza, Argentina</p>
         </div>
-    </section>
-</main>
+    </footer>
 
-<footer>
-    <div class="footer-inner">
-        <div class="footer-brand">Román <span>Zuñiga</span></div>
-        <nav class="footer-nav">
-            <a href="index.html">Inicio</a>
-            <a href="perfil.html">Perfil</a>
-            <a href="carrera.html">Carrera</a>
-            <a href="galeria.html">Momentos</a>
-            <a href="contacto.html">Representación</a>
-        </nav>
-        <p class="footer-copy">Pivot · Futsal · Mendoza, Argentina</p>
-    </div>
-</footer>
-
-<script src="app.js"></script>
-<script>
-    // Mouse glow en contact card
-    const card = document.getElementById('contactMain');
-    if (card) {
-        card.addEventListener('mousemove', e => {
-            const r = card.getBoundingClientRect();
-            card.style.setProperty('--mx', `${e.clientX - r.left}px`);
-            card.style.setProperty('--my', `${e.clientY - r.top}px`);
-        });
-    }
-</script>
+    <script src="app.js"></script>
+    <script>
+        // Mouse glow en contact card
+        const card = document.getElementById('contactMain');
+        if (card) {
+            card.addEventListener('mousemove', e => {
+                const r = card.getBoundingClientRect();
+                card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+                card.style.setProperty('--my', `${e.clientY - r.top}px`);
+            });
+        }
+    </script>
 </body>
+
 </html>
