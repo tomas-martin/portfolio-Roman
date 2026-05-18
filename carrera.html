@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrera · Román Zuñiga</title>
+    <meta name="description" content="Carrera profesional y palmarés de Román Zuñiga, pivot de futsal.">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Contadores grandes */
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--borde);
+            border: 1px solid var(--borde);
+            border-radius: 8px; overflow: hidden;
+            margin-bottom: 3rem;
+        }
+        .kpi {
+            background: var(--fondo);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .kpi:hover { background: rgba(19,53,128,0.2); }
+        .kpi-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            line-height: 1;
+            background: linear-gradient(135deg, var(--azul-claro), var(--rojo-vivo));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .kpi-lbl {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.65rem; letter-spacing: 0.28em;
+            text-transform: uppercase; color: var(--gris-400);
+            margin-top: 0.3rem;
+        }
+
+        /* Timeline de clubes */
+        .timeline { display: flex; flex-direction: column; gap: 0; }
+        .tl-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 0;
+            position: relative;
+        }
+        .tl-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 39px; top: 44px;
+            width: 2px; height: calc(100% - 20px);
+            background: linear-gradient(to bottom, var(--azul-claro), var(--borde));
+        }
+        .tl-year {
+            padding: 1.25rem 0.75rem 1.25rem 0;
+            display: flex; flex-direction: column;
+            align-items: flex-end; justify-content: flex-start;
+            padding-top: 1.5rem;
+        }
+        .tl-year span {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.65rem; letter-spacing: 0.25em;
+            color: var(--gris-400);
+            writing-mode: vertical-rl;
+        }
+        .tl-dot {
+            width: 12px; height: 12px; border-radius: 50%;
+            background: var(--azul-claro);
+            border: 2px solid var(--fondo);
+            flex-shrink: 0; margin-top: 0.4rem;
+            align-self: start; justify-self: end;
+        }
+        .tl-body {
+            background: var(--card);
+            border: 1px solid var(--borde);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 0.75rem 0 0.75rem 1rem;
+            transition: border-color 0.3s;
+        }
+        .tl-body:hover { border-color: rgba(37,99,235,0.4); }
+        .tl-club {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.1rem; font-weight: 700;
+            letter-spacing: 0.06em; text-transform: uppercase;
+            color: var(--blanco);
+        }
+        .tl-meta {
+            font-size: 0.72rem; color: var(--azul-claro);
+            margin: 0.2rem 0 0.75rem;
+            letter-spacing: 0.1em;
+        }
+        .tl-logros { display: flex; flex-direction: column; gap: 0.3rem; }
+        .tl-logro {
+            font-size: 0.8rem; color: var(--gris-100);
+            font-weight: 300; padding-left: 0.9rem;
+            position: relative; line-height: 1.5;
+        }
+        .tl-logro::before {
+            content: '·'; position: absolute; left: 0;
+            color: var(--rojo-vivo); font-weight: 900;
+        }
+
+        /* Grid de palmarés */
+        .palmares-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+        .palmares-block {
+            background: var(--card);
+            border: 1px solid var(--borde);
+            border-radius: 8px; overflow: hidden;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .palmares-block:hover {
+            border-color: rgba(185,28,28,0.35);
+            box-shadow: 0 4px 24px rgba(185,28,28,0.08);
+        }
+        .palmares-head {
+            padding: 1.25rem 1.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--borde);
+            background: rgba(19,53,128,0.15);
+        }
+        .palmares-head-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.95rem; font-weight: 700;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--blanco);
+        }
+        .palmares-count-badge {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem; line-height: 1;
+            background: linear-gradient(135deg, var(--rojo), var(--rojo-vivo));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .palmares-content { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+        .palmares-group-club {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.72rem; font-weight: 700;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--azul-claro); margin-bottom: 0.4rem;
+        }
+        .palmares-items { display: flex; flex-direction: column; gap: 0.3rem; }
+        .palmares-item {
+            font-size: 0.82rem; color: var(--gris-100);
+            font-weight: 300; padding-left: 1rem;
+            position: relative; line-height: 1.5;
+        }
+        .palmares-item::before {
+            content: '→'; position: absolute; left: 0;
+            color: var(--azul-claro); font-size: 0.7rem;
+        }
+        .palmares-item.gold::before { content: '🏆'; font-size: 0.7rem; }
+        .palmares-item.silver::before { content: '🥈'; font-size: 0.7rem; }
+        .palmares-item.bronze::before { content: '🥉'; font-size: 0.7rem; }
+
+        @media (min-width: 640px) { .kpi-row { grid-template-columns: repeat(4, 1fr); } }
+        @media (min-width: 768px) { .palmares-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .palmares-grid { grid-template-columns: repeat(3, 1fr); } }
+    </style>
+</head>
+<body>
+
+<nav id="navbar" class="navbar">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-brand">
+            <img src="assets/Talleres_Futsal.png" alt="Logo" class="nav-logo" onerror="this.style.display='none'">
+            <div class="nav-brand-text">
+                <span class="nav-brand-name">Román Zuñiga</span>
+                <span class="nav-brand-tag">Pivot · Futsal</span>
+            </div>
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html"    class="nav-link">Inicio</a>
+            <a href="perfil.html"   class="nav-link">Perfil</a>
+            <a href="carrera.html"  class="nav-link">Carrera</a>
+            <a href="galeria.html"  class="nav-link">Momentos</a>
+            <a href="contacto.html" class="nav-link">Representación</a>
+        </div>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html"    class="mobile-link">Inicio</a>
+        <a href="perfil.html"   class="mobile-link">Perfil</a>
+        <a href="carrera.html"  class="mobile-link active">Carrera</a>
+        <a href="galeria.html"  class="mobile-link">Momentos</a>
+        <a href="contacto.html" class="mobile-link">Representación</a>
+    </div>
+</nav>
+
+<div class="page-header" data-title="CARRERA">
+    <div class="page-header-inner">
+        <p class="page-breadcrumb">
+            <a href="index.html">Inicio</a><span>/</span>Carrera
+        </p>
+        <h1 class="page-title">Historial de <em>Carrera</em></h1>
+        <p class="page-subtitle">Clubes, selecciones y palmarés completo desde el debut en 2016.</p>
+    </div>
+</div>
+
+<main>
+    <section class="section">
+        <div class="container">
+
+            <!-- KPIs -->
+            <div class="kpi-row reveal">
+                <div class="kpi">
+                    <div class="kpi-num" data-count="11">11</div>
+                    <p class="kpi-lbl">Títulos totales</p>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-num" data-count="3">3</div>
+                    <p class="kpi-lbl">Clubes</p>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-num" data-count="2">2</div>
+                    <p class="kpi-lbl">Selecciones</p>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-num" data-count="2016">2016</div>
+                    <p class="kpi-lbl">Año de debut</p>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <p class="section-label reveal">Recorrido</p>
+            <h2 class="section-title reveal d1">Clubes</h2>
+
+            <div class="timeline reveal d2" style="margin-bottom:4rem;">
+
+                <div class="tl-item">
+                    <div class="tl-year"><span>2016 — 2021</span></div>
+                    <div class="tl-body">
+                        <p class="tl-club">Fray Luis Beltrán</p>
+                        <p class="tl-meta">Mendoza, Argentina · Club formativo</p>
+                        <div class="tl-logros">
+                            <p class="tl-logro">Campeón Torneo Clausura (2020)</p>
+                            <p class="tl-logro">Club de inicio y formación como Pivot</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-year"><span>2021 — Actual</span></div>
+                    <div class="tl-body">
+                        <p class="tl-club">Andes Talleres</p>
+                        <p class="tl-meta">Mendoza, Argentina · Club actual</p>
+                        <div class="tl-logros">
+                            <p class="tl-logro">Campeón Torneo Clausura (2022)</p>
+                            <p class="tl-logro">Campeón Torneo Apertura y Clausura (2023)</p>
+                            <p class="tl-logro">Campeón Torneo Clausura y Anual (2025)</p>
+                            <p class="tl-logro">2do Puesto DH Nacional (2022)</p>
+                            <p class="tl-logro">3er Puesto DH Nacional (2025)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-year"><span>2024 — 2025</span></div>
+                    <div class="tl-body">
+                        <p class="tl-club">Sportscenter Celano</p>
+                        <p class="tl-meta">Celano, Italia · Experiencia internacional</p>
+                        <div class="tl-logros">
+                            <p class="tl-logro">Campeón Serie C1 Italia (2025)</p>
+                            <p class="tl-logro">Primera experiencia en el fútbol sala europeo</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Palmarés -->
+            <p class="section-label reveal">Logros</p>
+            <h2 class="section-title reveal d1">Palmarés Completo</h2>
+
+            <div class="palmares-grid">
+
+                <div class="palmares-block reveal d1">
+                    <div class="palmares-head">
+                        <h3 class="palmares-head-title">Torneos Locales</h3>
+                        <span class="palmares-count-badge" data-count="5">5</span>
+                    </div>
+                    <div class="palmares-content">
+                        <div>
+                            <p class="palmares-group-club">Fray Luis Beltrán</p>
+                            <div class="palmares-items">
+                                <p class="palmares-item gold">Campeón Clausura (2020)</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="palmares-group-club">Sportscenter Celano — Italia</p>
+                            <div class="palmares-items">
+                                <p class="palmares-item gold">Campeón Serie C1 (2025)</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="palmares-group-club">Andes Talleres</p>
+                            <div class="palmares-items">
+                                <p class="palmares-item gold">Campeón Clausura (2022)</p>
+                                <p class="palmares-item gold">Campeón Apertura y Clausura (2023)</p>
+                                <p class="palmares-item gold">Campeón Clausura y Anual (2025)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="palmares-block reveal d2">
+                    <div class="palmares-head">
+                        <h3 class="palmares-head-title">Nacionales e Internacionales</h3>
+                        <span class="palmares-count-badge" data-count="3">3</span>
+                    </div>
+                    <div class="palmares-content">
+                        <div>
+                            <p class="palmares-group-club">Talleres — Nacionales</p>
+                            <div class="palmares-items">
+                                <p class="palmares-item silver">2do Puesto DH Nacional (2022)</p>
+                                <p class="palmares-item bronze">3er Puesto DH Nacional (2025)</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="palmares-group-club">Jockey Club — Internacional</p>
+                            <div class="palmares-items">
+                                <p class="palmares-item silver">2do Puesto Mundial de Clubes (2024)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="palmares-block reveal d3">
+                    <div class="palmares-head">
+                        <h3 class="palmares-head-title">Selecciones</h3>
+                        <span class="palmares-count-badge" data-count="3">3</span>
+                    </div>
+                    <div class="palmares-content">
+                        <div>
+                            <p class="palmares-group-club">Selección C20 Mendoza</p>
+                            <div class="palmares-items">
+                                <p class="palmares-item gold">Campeón Argentino C20 (2019)</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="palmares-group-club">Selección Mayor Mendoza</p>
+                            <div class="palmares-items">
+                                <p class="palmares-item silver">2do Puesto Argentino A (2023)</p>
+                                <p class="palmares-item gold">Campeón Argentino A (2025)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CTA -->
+            <div class="reveal" style="margin-top:3rem;text-align:center;">
+                <a href="galeria.html" class="btn btn-primary">Ver Galería de Imágenes →</a>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">Román <span>Zuñiga</span></div>
+        <nav class="footer-nav">
+            <a href="index.html">Inicio</a>
+            <a href="perfil.html">Perfil</a>
+            <a href="carrera.html">Carrera</a>
+            <a href="galeria.html">Momentos</a>
+            <a href="contacto.html">Representación</a>
+        </nav>
+        <p class="footer-copy">Pivot · Futsal · Mendoza, Argentina</p>
+    </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

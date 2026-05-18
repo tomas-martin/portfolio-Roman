@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil · Román Zuñiga</title>
+    <meta name="description" content="Perfil técnico de Román Zuñiga — pivot de futsal, Mendoza, Argentina.">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── Perfil específico ── */
+        .perfil-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        /* Bloque de foto + nombre */
+        .perfil-hero {
+            position: relative;
+            background: linear-gradient(135deg, rgba(19,53,128,0.3), rgba(6,12,30,0.8));
+            border: 1px solid var(--borde);
+            border-radius: 8px;
+            padding: 2rem;
+            display: flex; align-items: center;
+            gap: 2rem; overflow: hidden;
+        }
+        .perfil-hero::before {
+            content: 'PIVOT';
+            position: absolute; right: -0.5rem; bottom: -1rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 7rem; line-height: 1;
+            color: rgba(37,99,235,0.07);
+            pointer-events: none; user-select: none;
+            letter-spacing: 0.05em;
+        }
+        .perfil-photo {
+            flex-shrink: 0;
+            width: clamp(90px, 20vw, 140px);
+            height: clamp(130px, 28vw, 200px);
+            object-fit: contain; object-position: top center;
+            filter: grayscale(1) drop-shadow(0 8px 20px rgba(0,0,0,0.7));
+            border-radius: 4px;
+        }
+        .perfil-hero-info { flex: 1; }
+        .perfil-hero-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 7vw, 4rem);
+            line-height: 0.9; letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+        .perfil-hero-name em {
+            font-style: normal; color: transparent;
+            -webkit-text-stroke: 1.5px rgba(96,165,250,0.6);
+        }
+        .perfil-hero-pos {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.75rem; letter-spacing: 0.3em;
+            text-transform: uppercase; color: var(--rojo);
+            margin-top: 0.5rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .perfil-hero-pos::before {
+            content: ''; display: block;
+            width: 20px; height: 2px; background: var(--rojo);
+        }
+        .perfil-hero-tags {
+            display: flex; flex-wrap: wrap; gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .tag {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.65rem; letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.75rem;
+            border-radius: 2px;
+            border: 1px solid var(--borde);
+            color: var(--gris-400);
+        }
+        .tag.highlight { border-color: var(--rojo); color: var(--rojo-vivo); }
+
+        /* Grid de datos */
+        .datos-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--borde);
+            border: 1px solid var(--borde);
+            border-radius: 8px; overflow: hidden;
+        }
+        .dato {
+            background: var(--fondo);
+            padding: 1.4rem 1.25rem;
+            display: flex; flex-direction: column;
+            gap: 0.35rem;
+            transition: background 0.3s;
+        }
+        .dato:hover { background: rgba(19,53,128,0.2); }
+        .dato-lbl {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.62rem; letter-spacing: 0.3em;
+            text-transform: uppercase; color: var(--gris-400);
+        }
+        .dato-val {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.4rem; font-weight: 700;
+            letter-spacing: 0.04em;
+            color: var(--blanco);
+        }
+        .dato-val.accent { color: var(--azul-claro); }
+        .flag-row { display: flex; align-items: center; gap: 0.5rem; }
+        .flag { height: 16px; width: auto; }
+
+        /* Sección selecciones */
+        .sel-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .sel-item {
+            background: var(--card);
+            border: 1px solid var(--borde);
+            border-radius: 6px;
+            padding: 1rem 1.25rem;
+            display: flex; align-items: center;
+            gap: 1rem; transition: border-color 0.3s;
+        }
+        .sel-item:hover { border-color: rgba(37,99,235,0.4); }
+        .sel-badge {
+            flex-shrink: 0;
+            width: 36px; height: 36px;
+            background: rgba(37,99,235,0.15);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+        }
+        .sel-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1rem; font-weight: 700;
+            letter-spacing: 0.05em; text-transform: uppercase;
+            color: var(--blanco);
+        }
+        .sel-detail {
+            font-size: 0.75rem; color: var(--gris-400);
+            margin-top: 0.1rem;
+        }
+
+        @media (min-width: 640px) {
+            .datos-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .perfil-layout { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar" class="navbar">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-brand">
+            <img src="assets/Talleres_Futsal.png" alt="Logo" class="nav-logo" onerror="this.style.display='none'">
+            <div class="nav-brand-text">
+                <span class="nav-brand-name">Román Zuñiga</span>
+                <span class="nav-brand-tag">Pivot · Futsal</span>
+            </div>
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html"    class="nav-link">Inicio</a>
+            <a href="perfil.html"   class="nav-link">Perfil</a>
+            <a href="carrera.html"  class="nav-link">Carrera</a>
+            <a href="galeria.html"  class="nav-link">Momentos</a>
+            <a href="contacto.html" class="nav-link">Representación</a>
+        </div>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html"    class="mobile-link">Inicio</a>
+        <a href="perfil.html"   class="mobile-link active">Perfil</a>
+        <a href="carrera.html"  class="mobile-link">Carrera</a>
+        <a href="galeria.html"  class="mobile-link">Momentos</a>
+        <a href="contacto.html" class="mobile-link">Representación</a>
+    </div>
+</nav>
+
+<div class="page-header" data-title="PERFIL">
+    <div class="page-header-inner">
+        <p class="page-breadcrumb">
+            <a href="index.html">Inicio</a>
+            <span>/</span>
+            Perfil
+        </p>
+        <h1 class="page-title">Perfil del <em>Jugador</em></h1>
+        <p class="page-subtitle">Características técnicas, físicas y trayectoria de selecciones de Román Zuñiga.</p>
+    </div>
+</div>
+
+<main>
+    <section class="section">
+        <div class="container">
+
+            <!-- Bloque presentación -->
+            <div class="perfil-hero reveal" style="margin-bottom: 3rem;">
+                <img src="assets/roman.png" alt="Román Zuñiga" class="perfil-photo" onerror="this.style.display='none'">
+                <div class="perfil-hero-info">
+                    <h2 class="perfil-hero-name">Román<br><em>Zuñiga</em></h2>
+                    <p class="perfil-hero-pos">Pivot · Futsal</p>
+                    <div class="perfil-hero-tags">
+                        <span class="tag highlight">Derecha</span>
+                        <span class="tag">1.94 m · 83 kg</span>
+                        <span class="tag">Mendoza, ARG</span>
+                        <span class="tag">Debut 2016</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="perfil-layout">
+                <!-- Columna izquierda -->
+                <div>
+                    <p class="section-label reveal">Datos técnicos</p>
+                    <h2 class="section-title reveal d1">Características</h2>
+
+                    <div class="datos-grid reveal d2">
+                        <div class="dato">
+                            <span class="dato-lbl">Posición</span>
+                            <span class="dato-val accent">Pivot</span>
+                        </div>
+                        <div class="dato">
+                            <span class="dato-lbl">Pierna hábil</span>
+                            <span class="dato-val">Derecha</span>
+                        </div>
+                        <div class="dato">
+                            <span class="dato-lbl">Altura</span>
+                            <span class="dato-val">1.94 m</span>
+                        </div>
+                        <div class="dato">
+                            <span class="dato-lbl">Peso</span>
+                            <span class="dato-val">83 kg</span>
+                        </div>
+                        <div class="dato">
+                            <span class="dato-lbl">Nacimiento</span>
+                            <span class="dato-val" style="font-size:1rem;">01 / 07 / 1999</span>
+                        </div>
+                        <div class="dato">
+                            <span class="dato-lbl">Edad</span>
+                            <span class="dato-val accent"><span id="playerAge">26</span> años</span>
+                        </div>
+                        <div class="dato" style="grid-column: span 2;">
+                            <span class="dato-lbl">Nacionalidad</span>
+                            <span class="dato-val">
+                                <span class="flag-row">
+                                    <img src="assets/banderaArgentina-87dabfa7.png" alt="ARG" class="flag" onerror="this.style.display='none'">
+                                    Argentina
+                                </span>
+                            </span>
+                        </div>
+                        <div class="dato">
+                            <span class="dato-lbl">Debut</span>
+                            <span class="dato-val">2016</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna derecha -->
+                <div>
+                    <p class="section-label reveal">Internacional</p>
+                    <h2 class="section-title reveal d1">Selecciones</h2>
+
+                    <div class="sel-list reveal d2">
+                        <div class="sel-item">
+                            <div class="sel-badge">🏅</div>
+                            <div>
+                                <p class="sel-name">Selección Mendoza C20</p>
+                                <p class="sel-detail">Categoría Sub-20 · Campeón Argentino 2019</p>
+                            </div>
+                        </div>
+                        <div class="sel-item">
+                            <div class="sel-badge">🇦🇷</div>
+                            <div>
+                                <p class="sel-name">Selección Mayor Mendoza</p>
+                                <p class="sel-detail">Primera · 2do Puesto 2023 · Campeón 2025</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2.5rem;">
+                        <p class="section-label reveal">Reconocimientos</p>
+                        <h3 class="section-title reveal d1" style="font-size: clamp(1.4rem,3vw,2rem);">Highlights de Carrera</h3>
+                        <div class="reveal d2" style="
+                            background: var(--card); border: 1px solid var(--borde);
+                            border-radius: 8px; padding: 1.5rem;
+                            display: flex; flex-direction: column; gap: 0.85rem;
+                        ">
+                            <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+                                <span style="color:var(--rojo-vivo);font-size:1.1rem;flex-shrink:0">→</span>
+                                <p style="font-size:0.88rem;color:var(--gris-100);font-weight:300;line-height:1.6;">
+                                    <strong style="color:var(--blanco);">2do Puesto Mundial de Clubes 2024</strong> representando a Jockey Club como jugador invitado.
+                                </p>
+                            </div>
+                            <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+                                <span style="color:var(--rojo-vivo);font-size:1.1rem;flex-shrink:0">→</span>
+                                <p style="font-size:0.88rem;color:var(--gris-100);font-weight:300;line-height:1.6;">
+                                    <strong style="color:var(--blanco);">Experiencia internacional en Italia</strong> — Sportscenter Celano, Serie C1 italiana. Campeón 2025.
+                                </p>
+                            </div>
+                            <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+                                <span style="color:var(--rojo-vivo);font-size:1.1rem;flex-shrink:0">→</span>
+                                <p style="font-size:0.88rem;color:var(--gris-100);font-weight:300;line-height:1.6;">
+                                    <strong style="color:var(--blanco);">Campeón Argentino de Selecciones 2025</strong> con la Selección Mayor de Mendoza.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="reveal" style="margin-top:3rem;text-align:center;">
+                <a href="carrera.html" class="btn btn-primary">Ver Carrera Completa →</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">Román <span>Zuñiga</span></div>
+        <nav class="footer-nav">
+            <a href="index.html">Inicio</a>
+            <a href="perfil.html">Perfil</a>
+            <a href="carrera.html">Carrera</a>
+            <a href="galeria.html">Momentos</a>
+            <a href="contacto.html">Representación</a>
+        </nav>
+        <p class="footer-copy">Pivot · Futsal · Mendoza, Argentina</p>
+    </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentos · Román Zuñiga</title>
+    <meta name="description" content="Galería de imágenes de Román Zuñiga, pivot de futsal.">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Carrusel principal */
+        .carousel-wrap {
+            position: relative;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--borde);
+            border-radius: 8px; overflow: hidden;
+            height: clamp(280px, 55vw, 640px);
+            margin-bottom: 3rem;
+        }
+        .carousel-track {
+            display: flex; height: 100%;
+            overflow-x: scroll; scroll-snap-type: x mandatory;
+            scrollbar-width: none; -ms-overflow-style: none;
+            cursor: grab;
+        }
+        .carousel-track::-webkit-scrollbar { display: none; }
+        .carousel-track:active { cursor: grabbing; }
+        .c-slide {
+            flex-shrink: 0; width: 100%; height: 100%;
+            scroll-snap-align: center;
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+        }
+        .c-slide img {
+            max-width: 100%; max-height: 100%;
+            object-fit: contain;
+        }
+        /* Contador de slide */
+        .slide-counter {
+            position: absolute; top: 1rem; right: 1rem;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+            padding: 0.3rem 0.75rem; border-radius: 3px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.75rem; letter-spacing: 0.2em; color: var(--gris-400);
+            z-index: 10;
+        }
+        /* Botones */
+        .c-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            z-index: 10;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--blanco); width: 40px; height: 40px;
+            border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.3s, border-color 0.3s;
+            backdrop-filter: blur(8px);
+        }
+        .c-btn:hover { background: rgba(255,255,255,0.25); border-color: rgba(255,255,255,0.4); }
+        .c-btn svg { width: 18px; height: 18px; }
+        #prevBtn { left: 1rem; }
+        #nextBtn { right: 1rem; }
+        /* Dots */
+        #carouselDots {
+            position: absolute; bottom: 1rem; left: 50%;
+            transform: translateX(-50%);
+            display: flex; gap: 0.4rem; z-index: 10;
+            flex-wrap: wrap; justify-content: center;
+            max-width: calc(100% - 6rem);
+        }
+        .c-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: rgba(255,255,255,0.25);
+            border: none; cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .c-dot.active { background: var(--blanco); transform: scale(1.35); }
+
+        /* Grid de thumbnails */
+        .thumb-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+        .thumb-item {
+            aspect-ratio: 1;
+            overflow: hidden; border-radius: 4px;
+            border: 1px solid var(--borde);
+            cursor: pointer; position: relative;
+            transition: border-color 0.3s;
+        }
+        .thumb-item:hover { border-color: rgba(37,99,235,0.5); }
+        .thumb-item.active { border-color: var(--azul-claro); }
+        .thumb-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s var(--ease), filter 0.4s;
+            filter: grayscale(0.3) brightness(0.8);
+        }
+        .thumb-item:hover img { transform: scale(1.07); filter: grayscale(0) brightness(1); }
+        .thumb-item.active img { filter: grayscale(0) brightness(1); }
+        .thumb-overlay {
+            position: absolute; inset: 0;
+            background: rgba(37,99,235,0.3);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .thumb-item.active .thumb-overlay { opacity: 1; }
+        .thumb-overlay svg { width: 20px; height: 20px; color: white; }
+
+        @media (min-width: 640px) {
+            .thumb-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .thumb-grid { grid-template-columns: repeat(6, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar" class="navbar">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-brand">
+            <img src="assets/Talleres_Futsal.png" alt="Logo" class="nav-logo" onerror="this.style.display='none'">
+            <div class="nav-brand-text">
+                <span class="nav-brand-name">Román Zuñiga</span>
+                <span class="nav-brand-tag">Pivot · Futsal</span>
+            </div>
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html"    class="nav-link">Inicio</a>
+            <a href="perfil.html"   class="nav-link">Perfil</a>
+            <a href="carrera.html"  class="nav-link">Carrera</a>
+            <a href="galeria.html"  class="nav-link">Momentos</a>
+            <a href="contacto.html" class="nav-link">Representación</a>
+        </div>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html"    class="mobile-link">Inicio</a>
+        <a href="perfil.html"   class="mobile-link">Perfil</a>
+        <a href="carrera.html"  class="mobile-link">Carrera</a>
+        <a href="galeria.html"  class="mobile-link active">Momentos</a>
+        <a href="contacto.html" class="mobile-link">Representación</a>
+    </div>
+</nav>
+
+<div class="page-header" data-title="FOTOS">
+    <div class="page-header-inner">
+        <p class="page-breadcrumb">
+            <a href="index.html">Inicio</a><span>/</span>Momentos
+        </p>
+        <h1 class="page-title">Momentos <em>en Cancha</em></h1>
+        <p class="page-subtitle">Registro fotográfico de partidos, entrenamientos y competencias.</p>
+    </div>
+</div>
+
+<main>
+    <section class="section">
+        <div class="container">
+
+            <p class="section-label reveal">Galería</p>
+            <h2 class="section-title reveal d1">11 Imágenes</h2>
+
+            <!-- Carrusel -->
+            <div class="carousel-wrap reveal d2">
+                <div class="slide-counter" id="slideCounter">1 / 11</div>
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="c-slide"><img src="assets/carrusel1.jpeg"  alt="Foto 1"  onerror="this.closest('.c-slide').style.display='none'"></div>
+                    <div class="c-slide"><img src="assets/carrusel2.jpeg"  alt="Foto 2"  onerror="this.closest('.c-slide').style.display='none'"></div>
+                    <div class="c-slide"><img src="assets/carrusel3.jpeg"  alt="Foto 3"  onerror="this.closest('.c-slide').style.display='none'"></div>
+                    <div class="c-slide"><img src="assets/carrusel4.jpeg"  alt="Foto 4"  onerror="this.closest('.c-slide').style.display='none'"></div>
+                    <div class="c-slide"><img src="assets/carrusel5.jpeg"  alt="Foto 5"  onerror="this.closest('.c-slide').style.display='none'"></div>
+                    <div class="c-slide"><img src="assets/carrusel6.jpeg"  alt="Foto 6"  onerror="this.closest('.c-slide').style.display='none'"></div>
+                    <div class="c-slide"><img src="assets/carrusel7.jpeg"  alt="Foto 7"  onerror="this.closest('.c-slide').style.display='none'"></div>
+                    <div class="c-slide"><img src="assets/carrusel8.jpeg"  alt="Foto 8"  onerror="this.closest('.c-slide').style.display='none'"></div>
+                    <div class="c-slide"><img src="assets/carrusel9.jpeg"  alt="Foto 9"  onerror="this.closest('.c-slide').style.display='none'"></div>
+                    <div class="c-slide"><img src="assets/carrusel10.jpeg" alt="Foto 10" onerror="this.closest('.c-slide').style.display='none'"></div>
+                    <div class="c-slide"><img src="assets/carrusel11.jpeg" alt="Foto 11" onerror="this.closest('.c-slide').style.display='none'"></div>
+                </div>
+                <button class="c-btn" id="prevBtn" aria-label="Anterior">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <button class="c-btn" id="nextBtn" aria-label="Siguiente">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                <div id="carouselDots"></div>
+            </div>
+
+            <!-- Grid de thumbnails -->
+            <p class="section-label reveal">Miniaturas</p>
+            <div class="thumb-grid reveal d1" id="thumbGrid">
+                <!-- Se genera con JS -->
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">Román <span>Zuñiga</span></div>
+        <nav class="footer-nav">
+            <a href="index.html">Inicio</a>
+            <a href="perfil.html">Perfil</a>
+            <a href="carrera.html">Carrera</a>
+            <a href="galeria.html">Momentos</a>
+            <a href="contacto.html">Representación</a>
+        </nav>
+        <p class="footer-copy">Pivot · Futsal · Mendoza, Argentina</p>
+    </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+    // Thumbnails con sync al carrusel
+    document.addEventListener('DOMContentLoaded', () => {
+        const total = 11;
+        const grid  = document.getElementById('thumbGrid');
+        const track = document.getElementById('carouselTrack');
+        const counter = document.getElementById('slideCounter');
+        let current = 0;
+
+        for (let i = 1; i <= total; i++) {
+            const item = document.createElement('div');
+            item.className = 'thumb-item' + (i === 1 ? ' active' : '');
+            item.innerHTML = `
+                <img src="assets/carrusel${i}.jpeg" alt="Foto ${i}"
+                     onerror="this.closest('.thumb-item').style.display='none'">
+                <div class="thumb-overlay">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.9L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
+                    </svg>
+                </div>
+            `;
+            item.addEventListener('click', () => {
+                const idx = i - 1;
+                track.scrollTo({ left: idx * track.offsetWidth, behavior: 'smooth' });
+                updateActive(idx);
+            });
+            grid.appendChild(item);
+        }
+
+        function updateActive(idx) {
+            current = idx;
+            grid.querySelectorAll('.thumb-item').forEach((el, i) => {
+                el.classList.toggle('active', i === idx);
+            });
+            if (counter) counter.textContent = `${idx + 1} / ${total}`;
+        }
+
+        // Sync scroll del track
+        let st;
+        track.addEventListener('scroll', () => {
+            clearTimeout(st);
+            st = setTimeout(() => {
+                const w = track.offsetWidth;
+                if (w) updateActive(Math.round(track.scrollLeft / w));
+            }, 60);
+        }, { passive: true });
+    });
+</script>
+</body>
+</html>
